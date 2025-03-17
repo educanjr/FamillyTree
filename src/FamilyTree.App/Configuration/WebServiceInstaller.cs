@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
+using FamilyTree.App.OptionsSetup;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.Options;
@@ -44,6 +45,30 @@ public class WebServiceInstaller : IServiceInstaller
                     Version = description.ApiVersion.ToString()
                 });
             }
+
+            // Define x-client-id as a required header
+            opt.AddSecurityDefinition("X-Client-Id", new OpenApiSecurityScheme
+            {
+                In = ParameterLocation.Header,
+                Name = "x-client-id",
+                Type = SecuritySchemeType.ApiKey,
+                Description = "Custom client ID header required for API authentication"
+            });
+
+            opt.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "X-Client-Id"
+                        }
+                    },
+                    new List<string>()
+                }
+            });
         });
 
         services.AddCors(options =>
@@ -60,6 +85,8 @@ public class WebServiceInstaller : IServiceInstaller
 
         services.AddValidatorsFromAssembly(Web.AssemblyReference.Assembly);
         services.AddFluentValidationAutoValidation();
+
+        services.ConfigureOptions<RequiredHeadersOptionsSetup>();
     }
 }
 

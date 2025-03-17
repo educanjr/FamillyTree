@@ -30,5 +30,6 @@ public static class StartUpActions
     public static void RegisterMiddlewares(this IApplicationBuilder app)
     {
         app.UseMiddleware<ExeptionProcessMiddleware>();
+        app.UseMiddleware<ClientIdMiddleware>();
     }
 }
