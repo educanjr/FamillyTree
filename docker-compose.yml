@@ -1,43 +1,43 @@
 version: '3.8'
 
 networks:
-  famillytree.devnetwork:
+  familytree.devnetwork:
     driver: bridge
 
 services:
-  famillytree.api:
+  familytree.api:
     depends_on:
-      - "famillytree.db"
-    container_name: famillytree_api
+      - "familytree.db"
+    container_name: familytree_api
     build:
       context: ./src
-      dockerfile: FamillyTree.App/Dockerfile
+      dockerfile: FamilyTree.App/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://+:80
-      - ConnectionStrings__FamillyTreeDatabase=User ID=postgres;Password=postgres;Server=app_db;Port=5435;Database=FamillyTreeDb;IntegratedSecurity=true;Pooling=true;
+      - ConnectionStrings__FamilyTreeDatabase=User ID=postgres;Password=postgres;Server=app_db;Port=5435;Database=FamilyTreeDb;IntegratedSecurity=true;Pooling=true;
     ports:
       - "7006:80"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
     networks:
-      - famillytree.devnetwork
+      - familytree.devnetwork
 
-  famillytree.db:
+  familytree.db:
     image: postgres:latest
-    container_name: famillytree_db
+    container_name: familytree_db
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=FamillyTreeDb
+      - POSTGRES_DB=FamilyTreeDb
     ports: 
       - "5435:5432"
     restart: always
     volumes: 
       - app_data:/var/lib/postgresql/data
     networks:
-      - famillytree.devnetwork
+      - familytree.devnetwork
 
 volumes:
   app_data:  
