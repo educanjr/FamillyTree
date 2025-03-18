@@ -1,11 +1,6 @@
 ﻿namespace FamilyTree.Data.Abstractions;
 
-public abstract class BaseRepository
+public abstract class BaseRepository(IFamilyTreeDbContext context)
 {
-    private readonly IFamilyTreeDbContext _context;
-
-    protected IFamilyTreeDbContext FamilyTreeDbContext => _context;
-
-    public BaseRepository(IFamilyTreeDbContext context) =>
-        _context = context;
+    protected IFamilyTreeDbContext FamilyTreeDbContext => context;
 }

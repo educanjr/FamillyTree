@@ -5,12 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FamilyTree.Data.Repositories;
 
-public sealed class FamilyRepository : BaseRepository, IFamilyRepository
+public sealed class FamilyRepository(IFamilyTreeDbContext context) 
+    : BaseRepository(context), IFamilyRepository
 {
-    public FamilyRepository(IFamilyTreeDbContext context) : base(context)
-    {
-    }
-
     public async ValueTask<Family?> GetFamily(Guid familyId) =>
         await FamilyTreeDbContext.Famillies
             .AsNoTracking()
