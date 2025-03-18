@@ -7,17 +7,18 @@ import Card from './card/card';
 import Option from './option/option';
 
 import styles from './dropdown.module.css';
-import { DropdownOption } from '@/Interfaces/DropdownOption';
+import { DropdownOption } from '@/Interfaces/dropdownOption';
 
 
 
 interface DropdownSelectClientProps {
     options: DropdownOption[];
+    selectedOption: DropdownOption | null;
+    onChange: (option: DropdownOption | null) => void;
 }
 
-export default function DropdownSelect({ options }: DropdownSelectClientProps) {
+export default function DropdownSelect({ options, selectedOption = null, onChange }: DropdownSelectClientProps) {
     const [filteredOptions, setFilteredOptions] = useState<DropdownOption[]>(options);
-    const [selected, setSelected] = useState<DropdownOption | null>(null);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [search, setSearch] = useState<string>('');
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -32,24 +33,22 @@ export default function DropdownSelect({ options }: DropdownSelectClientProps) {
         }
     }, [search, options]);
 
-    const handleSelect = (option: DropdownOption) => {
-        setSelected(option);
+    useEffect(() => {
         setIsOpen(false);
         setSearch('');
-        console.log("Item selected")
-    };
+    }, [selectedOption, options]);
 
     const handleSearch = (target : string) => {
         if (!target || target.length === 0) {
-            setSelected(null);
+            onChange(null);
         }
 
         setSearch(target);
     }
 
     const getInputValue = () => {
-        if ((!search || search.length < 0) && selected){
-            return selected.label;
+        if ((!search || search.length < 0) && selectedOption){
+            return selectedOption.label;
         }
         
         return search;
@@ -99,8 +98,8 @@ export default function DropdownSelect({ options }: DropdownSelectClientProps) {
                         filteredOptions.map((option) => (
                             <Option
                                 key={option.value}
-                                isSelected={selected?.value === option.value}
-                                onClick={() => handleSelect(option)}>
+                                isSelected={selectedOption?.value === option.value}
+                                onClick={() => onChange(option)}>
                                 {option.label}
                             </Option>
                         ))

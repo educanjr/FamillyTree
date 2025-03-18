@@ -1,49 +1,33 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import FamilySelector from "@/componets/family-selector/family-selector";
+import {DropdownOption} from "@/Interfaces/dropdownOption";
+import { FamilyListApiResponse } from "@/Interfaces/familyListApiResponse";
 
-export default function Home() {
+const apiUrl = 'http://localhost:7006/api/v1/Families';
+const clientId = 'client-id-3ff5d097-dd85-463a-bb52-5b51fe97fb51';
+
+export default async function Home() {
+  const options: DropdownOption[] = [];
+  try {
+      const rawResponse = await fetch(apiUrl, {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+              'x-client-id': clientId,
+          }
+      });
+      const response: FamilyListApiResponse = await rawResponse.json();
+      if (response && response.families){
+          options.push(...response.families.map(item => ({
+              label: item.name,
+              value: item.id,
+          })));
+      }
+
+  } catch (error) {
+      console.error("Error fetching dropdown options:", error);
+  }
+  
   return (
-    <div className={styles['home-content']}>
-      <Image
-        className={styles.logo}
-        src="/next.svg"
-        alt="Next.js logo"
-        width={180}
-        height={38}
-        priority
-      />
-      <ol>
-        <li>
-          Get started by editing <code>src/app/page.tsx</code>.
-        </li>
-        <li>Save and see your changes instantly.</li>
-      </ol>
-
-      <div className={styles.ctas}>
-        <a
-          className={styles.primary}
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            className={styles.logo}
-            src="/vercel.svg"
-            alt="Vercel logomark"
-            width={20}
-            height={20}
-          />
-          Deploy now
-        </a>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.secondary}
-        >
-          Read our docs
-        </a>
-      </div>
-    </div>
+    <FamilySelector options={options}/>
   );
 }

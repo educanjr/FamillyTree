@@ -15,38 +15,6 @@
     }
 }
 
-.nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 1.5rem;
-}
-
-.nav a {
-    text-decoration: none;
-    color: #ddd;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    font-size: 1.2rem;
-}
-
-.nav a:hover,
-.nav a:active {
-    background: #0d6efd;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 18px rgba(13, 110, 253, 0.3);
-}
-
-.active {
-    background: #0d6efd;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
 .logo {
     display: flex;
     align-items: center;

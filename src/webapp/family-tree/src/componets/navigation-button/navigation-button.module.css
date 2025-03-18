@@ -1,0 +1,17 @@
+.navigate-button {
+    margin-top: 0;
+    width: 100%;
+    padding: 1.5rem;
+    background-color: #0d6efd;
+    border-radius: 2.5rem;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.navigate-button:hover {
+    background-color: #005ecb;
+    color: #ddd;
+}

@@ -12,13 +12,6 @@ export default function MainHeader() {
                 <Image src={logo} alt="Logo" />
                 FamilyTree
             </Link>
-            <nav className={styles['nav']}>
-                <ul>
-                    <li>
-                        <Link href={"/families"}>Browse available families</Link>
-                    </li>
-                </ul>
-            </nav>
         </header>
     )
 }
