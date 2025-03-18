@@ -11,10 +11,4 @@
     <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CommandAndQueries\" />
-    <Folder Include="Dtos\" />
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
 </Project>

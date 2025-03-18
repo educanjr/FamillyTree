@@ -1,4 +1,8 @@
+using FamilyTree.Application.CommandAndQueries.Family.GetById;
+using FamilyTree.Application.Common;
 using FamilyTree.Web.Abstractions;
+using FamilyTree.Web.Common;
+using FamilyTree.Web.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -28,8 +32,12 @@ public class FamilyController : BaseApiController<FamilyController>
     {
         try
         {
-            await NotImplementedEndpointPlaceholder();
-            return Ok();
+            return await ResultObject
+               .Create(new GetFamilyByIdQuery(id))
+               .Bind(cmd => Sender.Send(cmd))
+               .Match(
+                   family => Ok(DataConverters.FamilyConverter(family)),
+                   HandleFailure);
         }
         catch (Exception ex)
         {

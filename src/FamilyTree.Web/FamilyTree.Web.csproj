@@ -17,8 +17,4 @@
     <ProjectReference Include="..\FamilyTree.Application\FamilyTree.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Contracts\" />
-  </ItemGroup>
-
 </Project>
