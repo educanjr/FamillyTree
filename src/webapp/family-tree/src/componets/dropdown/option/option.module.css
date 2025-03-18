@@ -1,0 +1,19 @@
+/* Dropdown Option */
+.dropdown-option {
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    border: none;
+    background: white;
+    cursor: pointer;
+}
+
+.dropdown-option:hover {
+    background: #f0f0f0;
+}
+
+
+/* Selected Option */
+.selected {
+    background: #e0e0e0;
+}

@@ -1,0 +1,36 @@
+/* Dropdown Container */
+.dropdown {
+    position: relative;
+    width: 50rem;
+    font-family: Arial, sans-serif;
+}
+
+/* Label */
+.dropdown-label {
+    display: block;
+    font-size: 1.5rem;
+    color: #ddd;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    padding: 0 1.5rem;
+    text-align: center;
+}
+
+/* Input Field */
+.dropdown-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 5px solid #ddd;
+    padding: 1.5rem;
+    border-radius: 2.5rem;
+    cursor: pointer;
+}
+
+
+/* No Options Found */
+.dropdown-no-options {
+    padding: 10px;
+    color: #888;
+    text-align: center;
+}

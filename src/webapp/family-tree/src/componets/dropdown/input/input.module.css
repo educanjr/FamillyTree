@@ -1,0 +1,8 @@
+/* Input Element */
+.input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 1.5rem;
+}
