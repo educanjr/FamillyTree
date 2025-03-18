@@ -23,11 +23,13 @@ export default function DropdownSelect({ options }: DropdownSelectClientProps) {
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        setFilteredOptions(
-            options.filter((option) =>
-                option.label.toLowerCase().includes(search.toLowerCase())   
-            )
-        );
+        if (search && search.length > 2) {
+            setFilteredOptions(
+                options.filter((option) =>
+                    option.label.toLowerCase().includes(search.toLowerCase())   
+                )
+            );
+        }
     }, [search, options]);
 
     const handleSelect = (option: DropdownOption) => {
@@ -37,11 +39,35 @@ export default function DropdownSelect({ options }: DropdownSelectClientProps) {
         console.log("Item selected")
     };
 
+    const handleSearch = (target : string) => {
+        if (!target || target.length === 0) {
+            setSelected(null);
+        }
+
+        setSearch(target);
+    }
+
+    const getInputValue = () => {
+        if ((!search || search.length < 0) && selected){
+            return selected.label;
+        }
+        
+        return search;
+    }
+
     const handleClickOutside = (event: MouseEvent) => {
         if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-            setIsOpen(false);
+            handleOpenClose(false);
         }
     };
+
+    const handleOpenClose = (status: boolean) => {
+        if (!status) {
+            setSearch('');    
+        }
+
+        setIsOpen(status);
+    }
 
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
@@ -53,14 +79,17 @@ export default function DropdownSelect({ options }: DropdownSelectClientProps) {
     return (
         <div className={styles['dropdown']} ref={dropdownRef}>
             <label className={styles['dropdown-label']}>
-                {selected ? selected.label : 'Select a family of the list'}
+                Select a family from the list
             </label>
-            <div className={styles['dropdown-input']} onClick={() => setIsOpen(!isOpen)}>
+            <div className={styles['dropdown-input']} onClick={() => handleOpenClose(!isOpen)}>
                 <Input
                     placeholder="Search..."
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    onClick={(e) => e.stopPropagation()}
+                    value={getInputValue()}
+                    onChange={(e) => handleSearch(e.target.value)}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        handleOpenClose(true);
+                    }}
                 />
                 {isOpen ? <ChevronUp /> : <ChevronDown />}
             </div>
