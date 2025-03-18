@@ -16,9 +16,9 @@ namespace FamilyTree.Controllers;
 [Route("api/v{version:apiVersion}/[controller]")]
 [ApiController]
 
-public class FamilyController : BaseApiController<FamilyController>
+public class FamiliesController : BaseApiController<FamiliesController>
 {
-    public FamilyController(ISender sender, ILogger<FamilyController> logger)
+    public FamiliesController(ISender sender, ILogger<FamiliesController> logger)
         :base(sender, logger)
     {
     }
