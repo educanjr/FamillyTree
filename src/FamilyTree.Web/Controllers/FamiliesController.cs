@@ -1,3 +1,4 @@
+using FamilyTree.Application.CommandAndQueries.Family.GetAll;
 using FamilyTree.Application.CommandAndQueries.Family.GetById;
 using FamilyTree.Application.CommandAndQueries.Person.GetFamilyMember;
 using FamilyTree.Application.Common;
@@ -21,6 +22,29 @@ public class FamiliesController : BaseApiController<FamiliesController>
     public FamiliesController(ISender sender, ILogger<FamiliesController> logger)
         :base(sender, logger)
     {
+    }
+
+    [HttpGet]
+    [EndpointName(nameof(GetFamilies))]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> GetFamilies()
+    {
+        try
+        {
+            return await ResultObject
+               .Create(new GetAllFamiliesQuery())
+               .Bind(cmd => Sender.Send(cmd))
+               .Match(
+                   families => Ok(DataConverters.FamilyListConverter(families)),
+                   HandleFailure);
+        }
+        catch (Exception ex)
+        {
+            return HandleError(ex);
+        }
     }
 
     [HttpGet("{id}")]

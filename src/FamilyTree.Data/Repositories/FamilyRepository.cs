@@ -14,4 +14,7 @@ public sealed class FamilyRepository(IFamilyTreeDbContext context)
             .Where(x => x.Id == familyId)
             .Include(x => x.Members)
             .FirstOrDefaultAsync();
+
+    public async ValueTask<IList<Family>> GetFamilies() => 
+        await FamilyTreeDbContext.Famillies.AsNoTracking().ToListAsync() ?? [];
 }

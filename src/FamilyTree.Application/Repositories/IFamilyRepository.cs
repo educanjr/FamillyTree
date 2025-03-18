@@ -5,4 +5,5 @@ namespace FamilyTree.Application.Repositories;
 public interface IFamilyRepository
 {
     ValueTask<Family?> GetFamily(Guid familyId);
+    ValueTask<IList<Family>> GetFamilies();
 }
