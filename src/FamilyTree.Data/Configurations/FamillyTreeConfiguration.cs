@@ -16,6 +16,13 @@ class FamilyTreeConfiguration : IEntityTypeConfiguration<Family>
            .WithOne()
            .HasForeignKey(x => x.FamilyId);
 
-        //TODO: Seed data with HasValue method
+        var familyId = Guid.Parse("0a0a041f-dbf7-46bc-92e2-825d07d92d3c");
+
+        builder.HasData(
+            new Family
+            {
+                Id = familyId,
+                Name = "Smith Family Tree",
+            });
     }
 }

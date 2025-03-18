@@ -25,6 +25,7 @@ public class DataServiceInstaller : IServiceInstaller
                 maxRetryDelay: TimeSpan.FromSeconds(10),
                 errorCodesToAdd: null
             );
+            sqlOpt.MigrationsAssembly("FamilyTree.Data");
         }));
     }
 }

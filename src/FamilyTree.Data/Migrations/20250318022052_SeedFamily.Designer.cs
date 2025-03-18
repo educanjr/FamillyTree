@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FamilyTree.Data.Migrations
 {
     [DbContext(typeof(FamilyTreeDbContext))]
-    [Migration("20250318005243_StoreVerboseGender")]
-    partial class StoreVerboseGender
+    [Migration("20250318022052_SeedFamily")]
+    partial class SeedFamily
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,13 @@ namespace FamilyTree.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Famillies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("0a0a041f-dbf7-46bc-92e2-825d07d92d3c"),
+                            Name = "Smith Family Tree"
+                        });
                 });
 
             modelBuilder.Entity("FamilyTree.Application.Entities.Person", b =>

@@ -25,7 +25,7 @@ builder.Services.InstallServices(builder.Configuration, typeof(IServiceInstaller
 
 var app = builder.Build();
 
-app.ApplyPendingMigrations();
+//app.ApplyPendingMigrations();
 app.RegisterMiddlewares();
 
 // Configure the HTTP request pipeline.

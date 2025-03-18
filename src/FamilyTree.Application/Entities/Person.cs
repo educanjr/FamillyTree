@@ -28,11 +28,6 @@ public class Person
             return $"(-{DeathDate.Value.Year})";
         }
 
-        if (!BirthDate.HasValue && !DeathDate.HasValue)
-        {
-            return livingSpan;
-        }
-
         if (BirthDate.HasValue)
         {
             int age = DateTime.Now.Year - BirthDate.Value.Year;

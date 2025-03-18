@@ -30,7 +30,7 @@ namespace FamilyTree.Data.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     GivenName = table.Column<string>(type: "text", nullable: false),
                     Surname = table.Column<string>(type: "text", nullable: false),
-                    Gender = table.Column<int>(type: "integer", nullable: false),
+                    Gender = table.Column<string>(type: "text", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     BirthLocation = table.Column<string>(type: "text", nullable: true),
                     DeathDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
