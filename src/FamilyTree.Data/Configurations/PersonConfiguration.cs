@@ -11,6 +11,8 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
         builder
             .HasKey(x => x.Id);
 
-        //TODO: Seed data with HasValue method
+        builder
+            .Property(x => x.Gender)
+            .HasConversion<string>();
     }
 }
