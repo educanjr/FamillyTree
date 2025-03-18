@@ -1,4 +1,5 @@
 using FamilyTree.Application.CommandAndQueries.Family.GetById;
+using FamilyTree.Application.CommandAndQueries.Person.GetFamilyMember;
 using FamilyTree.Application.Common;
 using FamilyTree.Web.Abstractions;
 using FamilyTree.Web.Common;
@@ -37,6 +38,29 @@ public class FamilyController : BaseApiController<FamilyController>
                .Bind(cmd => Sender.Send(cmd))
                .Match(
                    family => Ok(DataConverters.FamilyConverter(family)),
+                   HandleFailure);
+        }
+        catch (Exception ex)
+        {
+            return HandleError(ex);
+        }
+    }
+
+    [HttpGet("{familyId}/members/{memberId}")]
+    [EndpointName(nameof(GetFamilyMember))]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> GetFamilyMember(Guid familyId, Guid memberId)
+    {
+        try
+        {
+            return await ResultObject
+               .Create(new GetFamilyMemberQuery(familyId, memberId))
+               .Bind(cmd => Sender.Send(cmd))
+               .Match(
+                   member => Ok(DataConverters.PersonConverter(member)),
                    HandleFailure);
         }
         catch (Exception ex)
