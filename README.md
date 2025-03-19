@@ -195,7 +195,7 @@ If you have improvements or bug fixes, feel free to **open a PR** on GitHub.
 
 ## 🎯 Summary
 ✅ **Full-stack .NET 9 & Next.js Application**  
-✅ **Dropdown Select with Search capabilities**  
+✅ **Dropdown Select with Filter capabilities**  
 ✅ **PostgreSQL database with EF Core**  
 ✅ **Containerized with Docker Compose**  
 ✅ **Integration tests with TestContainers**  
