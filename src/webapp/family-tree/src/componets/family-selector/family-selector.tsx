@@ -6,8 +6,6 @@ import DropdownSelect from '@/componets/dropdown/dropdown-select';
 import NavigationButton from '../navigation-button/navigation-button';
 import { useRouter } from 'next/navigation';
 
-
-
 interface FamilySelectorProps {
     options: DropdownOption[];
 }
