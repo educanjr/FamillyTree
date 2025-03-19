@@ -21,3 +21,9 @@
     background: #0d6efd;
     color: #ddd;
 }
+
+.preselected {
+    text-decoration: underline;
+    background: #9fc3f870;
+    color: #000;
+}

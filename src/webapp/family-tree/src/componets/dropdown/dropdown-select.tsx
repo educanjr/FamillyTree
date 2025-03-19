@@ -21,17 +21,20 @@ export default function DropdownSelect({ options, selectedOption = null, onChang
     const [filteredOptions, setFilteredOptions] = useState<DropdownOption[]>(options);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [search, setSearch] = useState<string>('');
+    const [preSelected, setPreselected] = useState<DropdownOption | null>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (search && search.length > 2) {
-            setFilteredOptions(
-                options.filter((option) =>
-                    option.label.toLowerCase().includes(search.toLowerCase())   
-                )
-            );
+            const filtered = options.filter((option) => option.label.toLowerCase().includes(search.toLowerCase()));
+            setFilteredOptions(filtered);
+            if (!preSelected || filtered.findIndex((option) => option.value === preSelected.value)) {
+                setPreselected(filtered.length > 0 ? filtered[0] : null);
+            }
+            setIsOpen(true);
         } else {
             setFilteredOptions(options);
+            setPreselected(null);
         }
 
     }, [search, options]);
@@ -78,6 +81,39 @@ export default function DropdownSelect({ options, selectedOption = null, onChang
         };
     }, []);
 
+    const handleSelected = (option: DropdownOption) => {
+        setPreselected(null);
+        setSearch('');
+        onChange(option);
+    }
+
+    const handlePreselected = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (!preSelected){
+            return;
+        }
+
+        const currentIndex = filteredOptions.findIndex((option) => option.value === preSelected.value);
+        let newIndex = currentIndex;
+        if (e.key === "ArrowUp") {
+            newIndex -= 1;
+        } else if (e.key === "ArrowDown") {
+            newIndex += 1;
+        } else if (e.key === "Enter") {
+            handleSelected({...preSelected});
+        } else {
+            return;
+        }
+
+        e.stopPropagation();
+        console.log(newIndex);
+
+        if (newIndex < 0 || newIndex >= filteredOptions.length || newIndex === currentIndex){
+            return;
+        }
+
+        setPreselected(filteredOptions[newIndex]);
+    }
+
     return (
         <div className={styles['dropdown']} ref={dropdownRef}>
             <label className={styles['dropdown-label']}>
@@ -88,6 +124,7 @@ export default function DropdownSelect({ options, selectedOption = null, onChang
                     placeholder="Search..."
                     value={getInputValue()}
                     onChange={(e) => handleSearch(e.target.value)}
+                    onKeyDown={(e) => handlePreselected(e)}
                     onClick={(e) => {
                         e.stopPropagation();
                         handleOpenClose(true);
@@ -102,7 +139,8 @@ export default function DropdownSelect({ options, selectedOption = null, onChang
                             <Option
                                 key={option.value}
                                 isSelected={selectedOption?.value === option.value}
-                                onClick={() => onChange(option)}>
+                                isPreselected={preSelected?.value === option.value}
+                                onClick={() => handleSelected(option)}>
                                 {option.label}
                             </Option>
                         ))
