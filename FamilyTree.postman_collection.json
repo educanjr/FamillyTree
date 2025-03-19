@@ -1,0 +1,89 @@
+{
+	"info": {
+		"_postman_id": "7d276085-31c2-4c53-868c-a58784abaec8",
+		"name": "FamilyTree",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15803909"
+	},
+	"item": [
+		{
+			"name": "GetFamily",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-client-id",
+						"value": "{{ClientID_2}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{Docker_URL}}/api/v1/Families/{{Family_Id}}",
+					"host": [
+						"{{Docker_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Families",
+						"{{Family_Id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetFamilyMember",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-client-id",
+						"value": "{{ClientID_1}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{Docker_URL}}/api/v1/Families/{{Family_Id}}/members/{{Person_John_Id}}",
+					"host": [
+						"{{Docker_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Families",
+						"{{Family_Id}}",
+						"members",
+						"{{Person_John_Id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetFamilies",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-client-id",
+						"value": "{{ClientID_2}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{Docker_URL}}/api/v1/Families",
+					"host": [
+						"{{Docker_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Families"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
