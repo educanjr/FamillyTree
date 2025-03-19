@@ -45,7 +45,7 @@ FamilyTree.sln
 │       │   ├── app                        # 📄 Next.js Server Side components
 │       │   ├── api-queries                # 🔗 API service layer
 │       │   ├── assets                     # 🎨 Images and static files
-│       │   ├── .env                       # ⚙️ Environment configurations
+│       │   ├── .env                       # 🛠️ Environment configurations
 │       │   ├── Dockerfile                 # 🐳 Docker setup
 │       │   ├── package.json               # 📦 Dependencies
 │       │   └── next.config.js             # ⚙️ Next.js configuration
