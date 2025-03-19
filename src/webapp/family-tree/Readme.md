@@ -6,7 +6,7 @@ This is the **frontend application** for the **FamilyTree project**, built with 
 
 Key features include:
 - **Next.js 14 with TurboPack for optimized development**
-- **Dropdown Select component with search functionality**
+- **Dropdown Select component with filter functionality**
 - **REST API integration with the FamilyTree backend**
 - **Containerized using Docker**
 
@@ -68,23 +68,6 @@ To check for linting issues:
 ```sh
 npm run lint
 ```
-
----
-
-## 🚀 Running with Docker
-
-### **1️⃣ Build the Docker Image**
-```sh
-docker build -t familytree-frontend .
-```
-
-### **2️⃣ Run the Container**
-```sh
-docker run -p 3010:3000 familytree-frontend
-```
-
-### **3️⃣ Access the Application**
-- **Frontend:** [http://localhost:3010](http://localhost:3010)
 
 ---
 

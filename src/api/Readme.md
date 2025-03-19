@@ -93,25 +93,6 @@ dotnet run --project FamilyTree.App
 
 ---
 
-## 🚀 Running with Docker
-
-### **1️⃣ Build the Docker Image**
-```sh
-docker build -t familytree-api .
-```
-
-### **2️⃣ Run the Container**
-```sh
-docker run -p 7006:80 familytree-api
-```
-
-### **3️⃣ Run with Docker Compose**
-```sh
-docker-compose up --build
-```
-
----
-
 ## ✅ Running Tests
 
 ### **1️⃣ Integration Tests**

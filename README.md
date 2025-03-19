@@ -154,17 +154,12 @@ cd FamilyTree
 
 ### **2️⃣ Build the Application**
 ```sh
-docker-compose build
+docker-compose up --build
 ```
 
 ### **3️⃣ Apply Migrations** (Manually using EF CLI)
 ```sh
-docker-compose run familytree.api dotnet ef database update --project src/api/FamilyTree.Data
-```
-
-### **4️⃣ Start the Application**
-```sh
-docker-compose up
+dotnet ef database update --project src/api/FamilyTree.Data
 ```
 
 ### **5️⃣ Access the Application**
