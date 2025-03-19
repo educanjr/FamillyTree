@@ -30,7 +30,10 @@ export default function DropdownSelect({ options, selectedOption = null, onChang
                     option.label.toLowerCase().includes(search.toLowerCase())   
                 )
             );
+        } else {
+            setFilteredOptions(options);
         }
+
     }, [search, options]);
 
     useEffect(() => {

@@ -6,7 +6,7 @@
     box-shadow: 0px 0px 5px 1px #ddd;;
     border-radius: 1.5rem;
     overflow-y: auto;
-    max-height: 200px;
+    max-height: 200rem;
     z-index: 10;
     margin-top: 0.5rem;
 }

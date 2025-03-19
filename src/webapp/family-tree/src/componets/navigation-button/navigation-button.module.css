@@ -15,3 +15,9 @@
     background-color: #005ecb;
     color: #ddd;
 }
+
+.navigate-button.disabled {
+    background-color: #192a56;
+    cursor: default;
+    color: #888;
+}

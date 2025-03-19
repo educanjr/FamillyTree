@@ -3,11 +3,20 @@ import styles from './navigation-button.module.css';
 interface NavigationButtonProps {
     label: string;
     onClick: () => void;
+    isActive: boolean;
 }
 
-export default function NavigationButton({ label, onClick }: NavigationButtonProps) {
+export default function NavigationButton({ label, onClick, isActive = true }: NavigationButtonProps) {
+    const handleClick = () => {
+        if (isActive) {
+            onClick();
+        }
+    }
+
+    const getButtonClassName = () => `${styles['navigate-button']} ${isActive ? '' : styles['disabled']}` 
+
     return (
-        <button className={styles['navigate-button']} onClick={onClick}>
+        <button className={getButtonClassName()} onClick={handleClick}>
             <span>
                 {label}
             </span>

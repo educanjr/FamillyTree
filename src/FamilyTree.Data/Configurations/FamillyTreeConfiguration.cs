@@ -1,4 +1,5 @@
 ﻿using FamilyTree.Application.Entities;
+using FamilyTree.Web.Seeders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -16,13 +17,6 @@ class FamilyTreeConfiguration : IEntityTypeConfiguration<Family>
            .WithOne()
            .HasForeignKey(x => x.FamilyId);
 
-        var familyId = Guid.Parse("0a0a041f-dbf7-46bc-92e2-825d07d92d3c");
-
-        builder.HasData(
-            new Family
-            {
-                Id = familyId,
-                Name = "Smith Family Tree",
-            });
+        SeedFamilies.SeedFamilyData(builder);
     }
 }

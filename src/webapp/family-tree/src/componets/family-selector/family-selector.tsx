@@ -27,10 +27,12 @@ export default function FamilySelector({ options }: FamilySelectorProps) {
         }
     };
 
+    const isOptionSlected = () => selected !== null;
+
     return (
         <>
             <DropdownSelect options={options} selectedOption={selected} onChange={handleSelection}/>
-            {selected && <NavigationButton label='Visit the selected family' onClick={handleNavigate} />}
+            <NavigationButton label='Visit the selected family' onClick={handleNavigate} isActive={isOptionSlected()} />
         </>
     );
 }
