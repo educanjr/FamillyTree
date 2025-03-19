@@ -52,7 +52,7 @@ FamilyTree.sln
 │
 ├── docker-compose.yml                    # 🏗️ Docker Compose setup
 ├── README.md                             # 📘 Project documentation
-└── FamilyTree.postman_collection.json    # 📘 Postman collection with API endpoints
+└── FamilyTree.postman_collection.json    # 📂 Postman collection with API endpoints
 ```
 
 ---
@@ -133,9 +133,13 @@ export default function FamilySelector({ options }: FamilySelectorProps) {
 ```
 
 ### **Features**
+
 ✅ Searchable dropdown
+
 ✅ Selection with callback
+
 ✅ Custom styling with CSS modules
+
 ✅ Navigation to selected family
 
 ---
