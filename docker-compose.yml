@@ -10,7 +10,7 @@ services:
       - "familytree.db"
     container_name: familytree_api
     build:
-      context: ./src
+      context: ./src/api
       dockerfile: FamilyTree.App/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
@@ -38,6 +38,21 @@ services:
       - app_data:/var/lib/postgresql/data
     networks:
       - familytree.devnetwork
+  
+  familytree.webapp:
+    depends_on:
+      - "familytree.api"
+    container_name: familytree_webapp
+    build:
+      context: ./src/webapp/family-tree
+      dockerfile: Dockerfile
+    ports:
+      - "3010:3000"
+    networks:
+      - familytree.devnetwork
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_BASE_URL=http://familytree.api:80
 
 volumes:
   app_data:  

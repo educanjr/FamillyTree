@@ -4,12 +4,15 @@ import FamilyGrid from "@/componets/family-grid/family-grid";
 import styles from './page.module.css';
 import GoHome from "@/componets/go-home/go-home";
 
-
-interface PageProps {
-    params: {familyId: string};
+interface FamilyPageParams {
+    familyId: string;
 }
 
-export default async function FamilyPage({params}: PageProps) {
+interface FamilyPageProps {
+    params: Promise<FamilyPageParams>;
+}
+
+export default async function FamilyPage({params}: FamilyPageProps) {
     const { familyId } = await params;
     return (        
         <>
@@ -21,10 +24,6 @@ export default async function FamilyPage({params}: PageProps) {
     )
 }
 
-interface FamilyDataProps {
-    familyId: string;
-}
-
 async function tryFetchFamilyData(familyId: string) {
     try {
         return await fetchFamilyWithMembers(familyId);
@@ -34,7 +33,7 @@ async function tryFetchFamilyData(familyId: string) {
     }
 }
 
-async function FamilyData({familyId}: FamilyDataProps) {
+async function FamilyData({familyId}: FamilyPageParams) {
     const family = await tryFetchFamilyData(familyId);
 
     return (
