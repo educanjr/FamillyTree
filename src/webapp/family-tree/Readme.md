@@ -24,7 +24,7 @@ family-tree/
 ├── 📄 .env                   # 🛠️ Environment configurations
 ├── 📜 package.json           # 📦 Dependencies & scripts
 ├── 🐳 Dockerfile             # 🐳 Docker setup
-├── ⚙️ next.config.js         # Next.js configuration
+├── ⚙️ next.config.js         # ⚙️ Next.js configuration
 └── README.md                 # 📘 Project documentation
 ```
 
