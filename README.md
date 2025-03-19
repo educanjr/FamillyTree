@@ -12,11 +12,13 @@ Key features include:
 
 ---
 
+
 ## 🎯 Objectives
-The application provides an API that returns individuals from a family tree and a frontend component that allows users to select a person from the list. The component supports:
+The application provides an API that returns families and members of a given family, and a frontend component that allows users to select a family from the list and fetch its members. The component supports:
 - **Dropdown selection**
 - **Searchable options**
 - **Dynamic API integration**
+- **Navigation to selected family**
 
 ---
 
